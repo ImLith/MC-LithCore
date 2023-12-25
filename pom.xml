@@ -5,9 +5,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.lith</groupId>
+	<groupId>com.lith.lithcore</groupId>
 	<artifactId>lithcore</artifactId>
 	<version>0.0.1</version>
+
+	<name>LithCore</name>
+	<packaging>jar</packaging>
+	<url>https://github.com/ImLith/LithCore</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

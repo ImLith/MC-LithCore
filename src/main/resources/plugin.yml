@@ -1,5 +1,12 @@
-name: lithcore
+name: LithCore
 main: com.lith.lithcore.Plugin
+
 version: 0.0.1
-api-version: 1.15
+api-version: 1.20
+
 description: A Core plugin for all my MineCraft plugins
+author: Lith
+website: https://github.com/ImLith/tpa
+
+depend: []
+softdepend: []
