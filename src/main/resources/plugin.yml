@@ -1,0 +1,5 @@
+name: lithcore
+main: com.lith.lithcore.Plugin
+version: 0.0.1
+api-version: 1.15
+description: A Core plugin for all my MineCraft plugins
