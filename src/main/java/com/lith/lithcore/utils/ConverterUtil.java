@@ -1,4 +1,4 @@
-package main.java.com.lith.lithcore.utils;
+package com.lith.lithcore.utils;
 
 public class ConverterUtil {
     public static long convertMinsToSeconds(final long min) {

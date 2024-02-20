@@ -1,4 +1,4 @@
-package main.java.com.lith.lithcore.config;
+package com.lith.lithcore.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

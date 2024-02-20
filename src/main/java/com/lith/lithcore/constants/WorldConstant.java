@@ -1,4 +1,4 @@
-package main.java.com.lith.lithcore.constants;
+package com.lith.lithcore.constants;
 
 public class WorldConstant {
     public static final int DAY_TIME_MIN_VALUE = 0;

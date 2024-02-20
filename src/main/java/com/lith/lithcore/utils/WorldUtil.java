@@ -1,8 +1,8 @@
-package main.java.com.lith.lithcore.utils;
+package com.lith.lithcore.utils;
 
 import java.util.Map;
 import org.bukkit.World;
-import main.java.com.lith.lithcore.constants.WorldConstant;
+import com.lith.lithcore.constants.WorldConstant;
 
 public class WorldUtil {
     public static boolean isDay(final World world) {
