@@ -10,11 +10,11 @@ public class PlayerUtil {
         return PlayerUtil.generateOnlinePlayerNames(null);
     }
 
-    public static List<String> getOnlinePlayerNames(ArrayList<String> ignoreNames) {
+    public static List<String> getOnlinePlayerNames(List<String> ignoreNames) {
         return PlayerUtil.generateOnlinePlayerNames(ignoreNames);
     }
 
-    private static List<String> generateOnlinePlayerNames(ArrayList<String> ignoreNames) {
+    private static List<String> generateOnlinePlayerNames(List<String> ignoreNames) {
         List<String> names = new ArrayList<>();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
