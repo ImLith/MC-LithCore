@@ -1,16 +1,19 @@
 package com.lith.lithcore;
 
-import java.util.logging.Logger;
-import org.bukkit.plugin.java.JavaPlugin;
+import com.lith.lithcore.abstractClasses.MainPlugin;
+import com.lith.lithcore.config.ConfigManager;
 
-public class Plugin extends JavaPlugin {
-  private static final Logger LOGGER = Logger.getLogger("lithcore");
+public class Plugin extends MainPlugin<ConfigManager> {
+  public static MainPlugin<ConfigManager> plugin;
 
   public void onEnable() {
-    LOGGER.info("lithcore enabled");
+    Plugin.plugin = this;
+    new ConfigManager(this);
+
+    Static.log.info("Plugin enabled");
   }
 
   public void onDisable() {
-    LOGGER.info("lithcore disabled");
+    Static.log.info("Plugin enabled");
   }
 }
