@@ -13,13 +13,23 @@ public abstract class AbstractCommand<P extends JavaPlugin> implements TabExecut
     protected final String commandName;
     protected final String permission = null;
     protected final Boolean onlyPlayer = true;
+    protected final Integer minArgsLength;
 
     public AbstractCommand(P plugin, String commandName) {
         this.plugin = plugin;
         this.commandName = commandName;
+        this.minArgsLength = null;
+    }
+
+    public AbstractCommand(P plugin, String commandName, Integer minArgsLength) {
+        this.plugin = plugin;
+        this.commandName = commandName;
+        this.minArgsLength = minArgsLength;
     }
 
     public abstract boolean onExecute(CommandSender sender, Command command, String label, String[] args);
+
+    public abstract String usage();
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
@@ -38,6 +48,11 @@ public abstract class AbstractCommand<P extends JavaPlugin> implements TabExecut
 
         if (this.permission != null && !sender.hasPermission(this.permission)) {
             sender.sendMessage(Plugin.plugin.cm.messages().noPermission);
+            return true;
+        }
+
+        if (this.minArgsLength != null && args.length < this.minArgsLength) {
+            sender.sendMessage(usage());
             return true;
         }
 
