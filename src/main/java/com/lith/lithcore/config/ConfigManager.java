@@ -1,9 +1,9 @@
 package com.lith.lithcore.config;
 
-import org.bukkit.configuration.ConfigurationSection;
-import com.lith.lithcore.Static;
+import com.lith.lithcore.Static.ConfigKeys;
 import com.lith.lithcore.abstractClasses.MainPlugin;
 import com.lith.lithcore.abstractClasses.PluginConfigManager;
+import net.md_5.bungee.api.ChatColor;
 
 public class ConfigManager extends PluginConfigManager {
     private final ConfigMessages messages;
@@ -23,15 +23,13 @@ public class ConfigManager extends PluginConfigManager {
         public final String noPermission;
 
         public ConfigMessages() {
-            ConfigurationSection section = config.getConfigurationSection(Static.ConfigKeys.Messages.SECTION);
+            this.onlyPlayer = get(ConfigKeys.Messages.ONLY_PLAYER);
+            this.noPermission = get(ConfigKeys.Messages.NO_PERMISSION);
+        }
 
-            if (section == null) {
-                this.onlyPlayer = Static.Default.Messages.ONLY_PLAYER;
-                this.noPermission = Static.Default.Messages.NO_PERMISSION;
-            } else {
-                this.onlyPlayer = section.getString(Static.ConfigKeys.Messages.ONLY_PLAYER);
-                this.noPermission = section.getString(Static.ConfigKeys.Messages.NO_PERMISSION);
-            }
+        private String get(String key) {
+            return ChatColor.translateAlternateColorCodes('&',
+                    config.getString(ConfigKeys.Messages.SECTION + "." + key));
         }
     }
 }
