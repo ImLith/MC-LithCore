@@ -1,4 +1,4 @@
-package com.lith.lithcore.config;
+package com.lith.lithcore.abstractClasses;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

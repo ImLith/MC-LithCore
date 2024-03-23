@@ -1,6 +1,5 @@
 package com.lith.lithcore.utils;
 
-import java.util.Map;
 import org.bukkit.World;
 import com.lith.lithcore.constants.WorldConstant;
 
