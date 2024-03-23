@@ -29,7 +29,7 @@ public class ConfigManager extends PluginConfigManager {
 
         private String get(String key) {
             return ChatColor.translateAlternateColorCodes('&',
-                    config.getString(ConfigKeys.Messages.SECTION + "." + key));
+                    config.getString(key));
         }
     }
 }
