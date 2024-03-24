@@ -8,6 +8,7 @@ public class Plugin extends MainPlugin<ConfigManager> {
 
   public void onEnable() {
     Plugin.plugin = this;
+
     new ConfigManager(this);
 
     Static.log.info("Plugin enabled");
