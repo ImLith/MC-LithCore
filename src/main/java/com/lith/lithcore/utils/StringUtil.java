@@ -2,7 +2,7 @@ package com.lith.lithcore.utils;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class SupportUtil {
+public class StringUtil {
     public static String addColors(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
     }

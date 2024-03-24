@@ -2,7 +2,7 @@ package com.lith.lithcore.abstractClasses;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import com.lith.lithcore.utils.SupportUtil;
+import com.lith.lithcore.utils.StringUtil;
 
 @SuppressWarnings("rawtypes")
 public abstract class PluginConfigManager {
@@ -31,9 +31,9 @@ public abstract class PluginConfigManager {
         if (text == null)
             return null;
         if (addColors)
-            text = SupportUtil.addColors(text);
+            text = StringUtil.addColors(text);
         if (addUnicodes)
-            text = SupportUtil.addUnicodes(text);
+            text = StringUtil.addUnicodes(text);
 
         return text;
     }
