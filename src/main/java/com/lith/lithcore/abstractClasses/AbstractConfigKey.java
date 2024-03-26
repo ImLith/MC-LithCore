@@ -1,17 +1,8 @@
 package com.lith.lithcore.abstractClasses;
 
 public abstract class AbstractConfigKey {
-    private static String path = null;
-
     protected static String setKey(String key) {
-        return getPath() + key;
-    }
-
-    private static String getPath() {
-        if (path == null)
-            path = calculatePath();
-
-        return path;
+        return calculatePath() + key;
     }
 
     private static String calculatePath() {
