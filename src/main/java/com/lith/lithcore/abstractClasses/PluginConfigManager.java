@@ -2,10 +2,11 @@ package com.lith.lithcore.abstractClasses;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import com.lith.lithcore.utils.StringUtil;
+
 @SuppressWarnings("rawtypes")
 public abstract class PluginConfigManager {
     public final FileConfiguration config;
-    public final MainPlugin plugin;
 
     @SuppressWarnings("unchecked")
     public PluginConfigManager(final MainPlugin plugin) {
@@ -13,7 +14,35 @@ public abstract class PluginConfigManager {
         plugin.saveDefaultConfig();
 
         plugin.cm = this;
-        this.plugin = plugin;
         this.config = plugin.getConfig();
+    }
+
+    protected String getMessage(String key) {
+        return getMessage(key, true, true);
+    }
+
+    protected String getMessage(String key, Boolean addColors) {
+        return getMessage(key, addColors, true);
+    }
+
+    protected String getMessage(String key, Boolean addColors, Boolean addUnicodes) {
+        String text = getString(key);
+
+        if (text == null)
+            return null;
+        if (addColors)
+            text = StringUtil.addColors(text);
+        if (addUnicodes)
+            text = StringUtil.addUnicodes(text);
+
+        return text;
+    }
+
+    protected String getString(String key) {
+        return config.getString(key);
+    }
+
+    protected Object getObject(String key) {
+        return config.get(key);
     }
 }
