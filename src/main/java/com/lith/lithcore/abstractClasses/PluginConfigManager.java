@@ -42,6 +42,14 @@ public abstract class PluginConfigManager {
         return config.getString(key);
     }
 
+    protected Boolean getBool(String key) {
+        return config.getBoolean(key);
+    }
+
+    protected Long getLong(String key) {
+        return config.getLong(key);
+    }
+
     protected Object getObject(String key) {
         return config.get(key);
     }
