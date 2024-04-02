@@ -1,7 +1,6 @@
 package com.lith.lithcore.abstractClasses;
 
 import org.bukkit.configuration.file.FileConfiguration;
-
 import com.lith.lithcore.utils.StringUtil;
 
 @SuppressWarnings("rawtypes")
@@ -48,6 +47,16 @@ public abstract class PluginConfigManager {
 
     protected Long getLong(String key) {
         return config.getLong(key);
+    }
+
+    protected int getInt(String key) {
+        return config.getInt(key);
+    }
+
+    protected int getRgbValue(String key) {
+        int color = getInt(key);
+
+        return color > 255 ? 255 : color < 0 ? 0 : color;
     }
 
     protected Object getObject(String key) {
