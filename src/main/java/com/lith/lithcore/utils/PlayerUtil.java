@@ -50,7 +50,7 @@ public class PlayerUtil {
         for (Player player : Bukkit.getOnlinePlayers()) {
             final String playerName = player.getName();
 
-            if (ignoreNames != null && !ignoreNames.contains(playerName))
+            if (ignoreNames == null || !ignoreNames.contains(playerName))
                 names.add(player.getName());
         }
 
