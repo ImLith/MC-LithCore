@@ -5,7 +5,7 @@ import org.bukkit.event.Listener;
 import java.util.ArrayList;
 import org.bukkit.event.HandlerList;
 
-public abstract class MainPlugin<T extends PluginConfigManager> extends JavaPlugin {
+public abstract class AbstractPlugin<T extends AbstractConfigManager> extends JavaPlugin {
     protected ArrayList<Listener> registeredEvents = new ArrayList<>();
     public T cm = null;
 

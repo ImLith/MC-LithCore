@@ -4,11 +4,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import com.lith.lithcore.utils.StringUtil;
 
 @SuppressWarnings("rawtypes")
-public abstract class PluginConfigManager {
+public abstract class AbstractConfigManager {
     public final FileConfiguration config;
 
     @SuppressWarnings("unchecked")
-    public PluginConfigManager(final MainPlugin plugin) {
+    public AbstractConfigManager(final AbstractPlugin plugin) {
         plugin.reloadConfig();
         plugin.saveDefaultConfig();
 

@@ -1,14 +1,14 @@
 package com.lith.lithcore.config;
 
 import com.lith.lithcore.Static.ConfigKeys;
-import com.lith.lithcore.abstractClasses.MainPlugin;
-import com.lith.lithcore.abstractClasses.PluginConfigManager;
+import com.lith.lithcore.abstractClasses.AbstractPlugin;
+import com.lith.lithcore.abstractClasses.AbstractConfigManager;
 import net.md_5.bungee.api.ChatColor;
 
-public class ConfigManager extends PluginConfigManager {
+public class ConfigManager extends AbstractConfigManager {
     private final ConfigMessages messages;
 
-    public ConfigManager(final MainPlugin<ConfigManager> plugin) {
+    public ConfigManager(final AbstractPlugin<ConfigManager> plugin) {
         super(plugin);
 
         this.messages = new ConfigMessages();

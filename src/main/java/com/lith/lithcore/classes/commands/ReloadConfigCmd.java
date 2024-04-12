@@ -3,10 +3,10 @@ package com.lith.lithcore.classes.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import com.lith.lithcore.abstractClasses.AbstractCommand;
-import com.lith.lithcore.abstractClasses.MainPlugin;
+import com.lith.lithcore.abstractClasses.AbstractPlugin;
 
 @SuppressWarnings("rawtypes")
-public class ReloadConfigCmd<P extends MainPlugin> extends AbstractCommand<P> {
+public class ReloadConfigCmd<P extends AbstractPlugin> extends AbstractCommand<P> {
     protected final String permission;
     protected final Boolean onlyPlayer = false;
 
