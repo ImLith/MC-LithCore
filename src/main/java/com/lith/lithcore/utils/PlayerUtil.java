@@ -7,14 +7,23 @@ import org.bukkit.entity.Player;
 
 public class PlayerUtil {
     public static List<String> getOnlinePlayerNames() {
-        return PlayerUtil.generateOnlinePlayerNames(null);
+        return getOnlinePlayerNames(null);
     }
 
     public static List<String> getOnlinePlayerNames(List<String> ignoreNames) {
-        return PlayerUtil.generateOnlinePlayerNames(ignoreNames);
+        List<String> names = new ArrayList<>();
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            final String playerName = player.getName();
+
+            if (ignoreNames == null || !ignoreNames.contains(playerName))
+                names.add(player.getName());
+        }
+
+        return names;
     }
 
-    public static int getExpForLevel(int level) {
+    public static int getExpInLevels(int level) {
         if (level <= 15)
             return 2 * level + 7;
         if (level <= 30)
@@ -42,18 +51,5 @@ public class PlayerUtil {
 
     public static int getCurrentExp(int level, float expPercentage, int expToNextLevel) {
         return getCurrentExpInLevel(level) + Math.round(expPercentage * expToNextLevel);
-    }
-
-    private static List<String> generateOnlinePlayerNames(List<String> ignoreNames) {
-        List<String> names = new ArrayList<>();
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            final String playerName = player.getName();
-
-            if (ignoreNames == null || !ignoreNames.contains(playerName))
-                names.add(player.getName());
-        }
-
-        return names;
     }
 }

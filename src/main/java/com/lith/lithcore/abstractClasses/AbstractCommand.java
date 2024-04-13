@@ -42,12 +42,12 @@ public abstract class AbstractCommand<P extends JavaPlugin> implements TabExecut
             return false;
 
         if (this.onlyPlayer && !(sender instanceof Player)) {
-            sender.sendMessage(Plugin.plugin.cm.messages().onlyPlayer);
+            sender.sendMessage(Plugin.plugin.configs.getConfigMsg().onlyPlayer);
             return true;
         }
 
         if (this.permission != null && !sender.hasPermission(this.permission)) {
-            sender.sendMessage(Plugin.plugin.cm.messages().noPermission);
+            sender.sendMessage(Plugin.plugin.configs.getConfigMsg().noPermission);
             return true;
         }
 

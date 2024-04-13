@@ -1,5 +1,7 @@
 package com.lith.lithcore.utils;
 
+import java.util.regex.Matcher;
+import com.lith.lithcore.constants.PatternConstant;
 import net.md_5.bungee.api.ChatColor;
 
 public class StringUtil {
@@ -8,26 +10,17 @@ public class StringUtil {
     }
 
     public static String addUnicodes(String text) {
+        Matcher matcher = PatternConstant.unicodeSearch.matcher(text);
         StringBuilder builder = new StringBuilder();
-        int i = 0;
+        int lastEnd = 0;
 
-        while (i < text.length()) {
-            char currentChar = text.charAt(i);
-            if (currentChar == '\\' && i + 1 < text.length() && text.charAt(i + 1) == 'u') {
-                try {
-                    builder.append((char) Integer
-                            .parseInt(text.substring(i + 2, i + 6), 16));
-                    i += 6;
-                } catch (NumberFormatException e) {
-                    builder.append(currentChar);
-                    i++;
-                }
-            } else {
-                builder.append(currentChar);
-                i++;
-            }
+        while (matcher.find()) {
+            builder.append(text.substring(lastEnd, matcher.start()));
+            builder.append(Integer.parseInt(matcher.group(1), 16));
+            lastEnd = matcher.end();
         }
 
+        builder.append(text.substring(lastEnd));
         return builder.toString();
     }
 }

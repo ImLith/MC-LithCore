@@ -3,16 +3,17 @@ package com.lith.lithcore.abstractClasses;
 import org.bukkit.configuration.file.FileConfiguration;
 import com.lith.lithcore.utils.StringUtil;
 
-@SuppressWarnings("rawtypes")
-public abstract class AbstractConfigManager {
-    public final FileConfiguration config;
+public abstract class AbstractConfigManager<P extends AbstractPlugin<P, C>, C extends AbstractConfigManager<P, C>> {
+    protected final P plugin;
+    public FileConfiguration config = null;
 
-    @SuppressWarnings("unchecked")
-    public AbstractConfigManager(final AbstractPlugin plugin) {
-        plugin.reloadConfig();
+    public AbstractConfigManager(final P plugin) {
+        this.plugin = plugin;
+    }
+
+    public void load() {
         plugin.saveDefaultConfig();
-
-        plugin.cm = this;
+        plugin.reloadConfig();
         this.config = plugin.getConfig();
     }
 
