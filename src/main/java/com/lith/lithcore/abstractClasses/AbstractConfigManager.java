@@ -43,8 +43,4 @@ public abstract class AbstractConfigManager<P extends AbstractPlugin<P, C>, C ex
 
         return color > 255 ? 255 : color < 0 ? 0 : color;
     }
-
-    protected Object getObject(String key) {
-        return config.get(key);
-    }
 }
