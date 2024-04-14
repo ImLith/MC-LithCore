@@ -16,11 +16,6 @@ public abstract class AbstractPlugin<P extends AbstractPlugin<P, C>, C extends A
         this.log = getLogger();
     }
 
-    public AbstractPlugin(C configManager) {
-        this.log = getLogger();
-        this.configs = configManager;
-    }
-
     public void onEnable() {
         preRegisterConfigs();
         registerConfigs();
