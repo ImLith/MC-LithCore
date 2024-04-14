@@ -26,10 +26,10 @@ public abstract class AbstractConfigManager<P extends AbstractPlugin<P, C>, C ex
     }
 
     protected String getMessage(String key, Boolean addColors, Boolean addUnicodes) {
-        String text = getString(key);
-
+        String text = config.getString(key);
         if (text == null)
             return null;
+
         if (addColors)
             text = StringUtil.addColors(text);
         if (addUnicodes)
@@ -38,24 +38,8 @@ public abstract class AbstractConfigManager<P extends AbstractPlugin<P, C>, C ex
         return text;
     }
 
-    protected String getString(String key) {
-        return config.getString(key);
-    }
-
-    protected Boolean getBool(String key) {
-        return config.getBoolean(key);
-    }
-
-    protected Long getLong(String key) {
-        return config.getLong(key);
-    }
-
-    protected int getInt(String key) {
-        return config.getInt(key);
-    }
-
     protected int getRgbValue(String key) {
-        int color = getInt(key);
+        int color = config.getInt(key);
 
         return color > 255 ? 255 : color < 0 ? 0 : color;
     }
