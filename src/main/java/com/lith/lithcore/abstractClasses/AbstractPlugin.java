@@ -23,6 +23,8 @@ public abstract class AbstractPlugin<P extends AbstractPlugin<P, C>, C extends A
         registerEvents();
         preRegisterCommands();
         registerCommands();
+        preRegisterRunnables();
+        registerRunnables();
         onFinishLoading();
 
         log.info("Plugin enabled");
@@ -54,6 +56,12 @@ public abstract class AbstractPlugin<P extends AbstractPlugin<P, C>, C extends A
     }
 
     protected void registerCommands() {
+    }
+
+    protected void preRegisterRunnables() {
+    }
+
+    protected void registerRunnables() {
     }
 
     protected void onFinishLoading() {
