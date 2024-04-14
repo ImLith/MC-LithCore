@@ -2,6 +2,7 @@ package com.lith.lithcore.helpers;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 import com.lith.lithcore.abstractClasses.AbstractCommand;
 import com.lith.lithcore.abstractClasses.AbstractPlugin;
 
@@ -10,7 +11,7 @@ public class ReloadConfigCmd<P extends AbstractPlugin<P, ?>> extends AbstractCom
     protected final Boolean onlyPlayer = false;
     protected final String usage;
 
-    public ReloadConfigCmd(P plugin, String permission, String cmd) {
+    public ReloadConfigCmd(@NotNull P plugin, @NotNull String permission, @NotNull String cmd) {
         super(plugin, cmd);
 
         this.permission = permission;
