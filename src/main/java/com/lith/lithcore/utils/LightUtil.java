@@ -3,31 +3,48 @@ package com.lith.lithcore.utils;
 import com.lith.lithcore.constants.LightConstant;
 
 public final class LightUtil {
-    public static int subtractLevel(int current) {
-        return addLevel(current, -1);
-    }
-
-    public static int addLevel(int current) {
-        return addLevel(current, 1);
-    }
-
-    public static int addLevel(int current, int amount) {
-        return getValidatedLevel(current + amount, LightConstant.MIN, LightConstant.MAX);
-    }
-
     public static int setLevel(int level) {
-        return getValidatedLevel(level, LightConstant.MIN, LightConstant.MAX);
+        return setLevel(level, false);
+    }
+
+    public static int setLevel(int level, Boolean rotate) {
+        return validateLightLevelLogic(level, LightConstant.MIN, LightConstant.MAX, rotate);
     }
 
     public static int setLevel(int level, int min) {
-        return getValidatedLevel(level, min, LightConstant.MAX);
+        return setLevel(level, min, false);
+    }
+
+    public static int setLevel(int level, int min, Boolean rotate) {
+        return validateLightLevelLogic(level, getMinLightLevel(min), LightConstant.MAX, rotate);
     }
 
     public static int setLevel(int level, int min, int max) {
-        return getValidatedLevel(level, min, max);
+        return setLevel(level, min, max, false);
     }
 
-    private static int getValidatedLevel(int level, int min, int max) {
-        return Math.min(Math.max(Math.min(Math.max(level, min), max), LightConstant.MIN), LightConstant.MAX);
+    public static int setLevel(int level, int min, int max, Boolean rotate) {
+        return validateLightLevelLogic(level, getMinLightLevel(min), getMaxLightLevel(max), true);
+    }
+
+    public static int getMinLightLevel(int lvl) {
+        return Math.max(lvl, LightConstant.MIN);
+    }
+
+    public static int getMaxLightLevel(int lvl) {
+        return Math.min(lvl, LightConstant.MAX);
+    }
+
+    private static int validateLightLevelLogic(int level, int min, int max, Boolean rotate) {
+        if (!rotate)
+            return Math.min(Math.max(level, min), max);
+
+        if (level > max)
+            return min;
+
+        if (level < min)
+            return max;
+
+        return level;
     }
 }
