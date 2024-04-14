@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-public class PlayerUtil {
+public final class PlayerUtil {
     public static List<String> getOnlinePlayerNames() {
         return getOnlinePlayerNames(null);
     }

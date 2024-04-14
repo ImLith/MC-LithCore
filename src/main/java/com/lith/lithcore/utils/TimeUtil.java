@@ -2,7 +2,7 @@ package com.lith.lithcore.utils;
 
 import com.lith.lithcore.constants.WorldConstant;
 
-public class TimeUtil {
+public final class TimeUtil {
     public static long convertMinsToSeconds(final long min) {
         return min * 60;
     }

@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 import com.lith.lithcore.constants.WorldConstant;
 
-public class WorldUtil {
+public final class WorldUtil {
     public static boolean isDay(@NotNull final World world) {
         final long time = world.getTime();
 
