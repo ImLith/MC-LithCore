@@ -5,8 +5,7 @@ import org.bukkit.command.CommandSender;
 import com.lith.lithcore.abstractClasses.AbstractCommand;
 import com.lith.lithcore.abstractClasses.AbstractPlugin;
 
-public class ReloadConfigCmd<P extends AbstractPlugin<P, ?>>
-        extends AbstractCommand<P> {
+public class ReloadConfigCmd<P extends AbstractPlugin<P, ?>> extends AbstractCommand<P> {
     protected final String permission;
     protected final Boolean onlyPlayer = false;
     protected final String usage;
