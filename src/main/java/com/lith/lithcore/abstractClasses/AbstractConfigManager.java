@@ -3,16 +3,17 @@ package com.lith.lithcore.abstractClasses;
 import org.bukkit.configuration.file.FileConfiguration;
 import com.lith.lithcore.utils.StringUtil;
 
-@SuppressWarnings("rawtypes")
-public abstract class PluginConfigManager {
-    public final FileConfiguration config;
+public abstract class AbstractConfigManager<P extends AbstractPlugin<P, C>, C extends AbstractConfigManager<P, C>> {
+    protected final P plugin;
+    public FileConfiguration config = null;
 
-    @SuppressWarnings("unchecked")
-    public PluginConfigManager(final MainPlugin plugin) {
-        plugin.reloadConfig();
+    public AbstractConfigManager(final P plugin) {
+        this.plugin = plugin;
+    }
+
+    public void load() {
         plugin.saveDefaultConfig();
-
-        plugin.cm = this;
+        plugin.reloadConfig();
         this.config = plugin.getConfig();
     }
 
@@ -25,10 +26,10 @@ public abstract class PluginConfigManager {
     }
 
     protected String getMessage(String key, Boolean addColors, Boolean addUnicodes) {
-        String text = getString(key);
-
+        String text = config.getString(key);
         if (text == null)
             return null;
+
         if (addColors)
             text = StringUtil.addColors(text);
         if (addUnicodes)
@@ -37,29 +38,9 @@ public abstract class PluginConfigManager {
         return text;
     }
 
-    protected String getString(String key) {
-        return config.getString(key);
-    }
-
-    protected Boolean getBool(String key) {
-        return config.getBoolean(key);
-    }
-
-    protected Long getLong(String key) {
-        return config.getLong(key);
-    }
-
-    protected int getInt(String key) {
-        return config.getInt(key);
-    }
-
     protected int getRgbValue(String key) {
-        int color = getInt(key);
+        int color = config.getInt(key);
 
         return color > 255 ? 255 : color < 0 ? 0 : color;
-    }
-
-    protected Object getObject(String key) {
-        return config.get(key);
     }
 }

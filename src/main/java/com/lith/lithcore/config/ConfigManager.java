@@ -1,21 +1,23 @@
 package com.lith.lithcore.config;
 
+import com.lith.lithcore.Plugin;
 import com.lith.lithcore.Static.ConfigKeys;
-import com.lith.lithcore.abstractClasses.MainPlugin;
-import com.lith.lithcore.abstractClasses.PluginConfigManager;
-import net.md_5.bungee.api.ChatColor;
+import lombok.Getter;
+import com.lith.lithcore.abstractClasses.AbstractConfigManager;
 
-public class ConfigManager extends PluginConfigManager {
-    private final ConfigMessages messages;
+public class ConfigManager extends AbstractConfigManager<Plugin, ConfigManager> {
+    @Getter
+    private ConfigMessages configMsg;
 
-    public ConfigManager(final MainPlugin<ConfigManager> plugin) {
+    public ConfigManager(final Plugin plugin) {
         super(plugin);
-
-        this.messages = new ConfigMessages();
     }
 
-    public ConfigMessages messages() {
-        return this.messages;
+    @Override
+    public void load() {
+        super.load();
+
+        this.configMsg = new ConfigMessages();
     }
 
     public class ConfigMessages {
@@ -23,13 +25,8 @@ public class ConfigManager extends PluginConfigManager {
         public final String noPermission;
 
         public ConfigMessages() {
-            this.onlyPlayer = get(ConfigKeys.Messages.ONLY_PLAYER);
-            this.noPermission = get(ConfigKeys.Messages.NO_PERMISSION);
-        }
-
-        private String get(String key) {
-            return ChatColor.translateAlternateColorCodes('&',
-                    config.getString(key));
+            this.onlyPlayer = getMessage(ConfigKeys.Messages.ONLY_PLAYER);
+            this.noPermission = getMessage(ConfigKeys.Messages.NO_PERMISSION);
         }
     }
 }

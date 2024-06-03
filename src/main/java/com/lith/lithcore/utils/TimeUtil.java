@@ -1,11 +1,13 @@
 package com.lith.lithcore.utils;
 
-public class ConverterUtil {
+import com.lith.lithcore.constants.WorldConstant;
+
+public final class TimeUtil {
     public static long convertMinsToSeconds(final long min) {
         return min * 60;
     }
 
     public static long convertMinsToTicks(final long min) {
-        return ConverterUtil.convertMinsToSeconds(min) * 20;
+        return TimeUtil.convertMinsToSeconds(min) * WorldConstant.TICKS_IN_SEC;
     }
 }

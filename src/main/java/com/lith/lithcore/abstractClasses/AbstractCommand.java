@@ -11,20 +11,44 @@ import com.lith.lithcore.Plugin;
 public abstract class AbstractCommand<P extends JavaPlugin> implements TabExecutor {
     protected final P plugin;
     protected final String commandName;
-    protected final String permission = null;
-    protected final Boolean onlyPlayer = true;
+    protected final String permission;
+    protected final Boolean onlyPlayer;
     protected final Integer minArgsLength;
 
     public AbstractCommand(P plugin, String commandName) {
-        this.plugin = plugin;
-        this.commandName = commandName;
-        this.minArgsLength = null;
+        this(plugin, commandName, null, null, true);
     }
 
     public AbstractCommand(P plugin, String commandName, Integer minArgsLength) {
+        this(plugin, commandName, minArgsLength, null, true);
+    }
+
+    public AbstractCommand(P plugin, String commandName, String permission) {
+        this(plugin, commandName, null, permission, true);
+    }
+
+    public AbstractCommand(P plugin, String commandName, Integer minArgsLength, String permission) {
+        this(plugin, commandName, minArgsLength, permission, true);
+    }
+
+    public AbstractCommand(P plugin, String commandName, Boolean onlyPlayer) {
+        this(plugin, commandName, null, null, onlyPlayer);
+    }
+
+    public AbstractCommand(P plugin, String commandName, Integer minArgsLength, Boolean onlyPlayer) {
+        this(plugin, commandName, minArgsLength, null, onlyPlayer);
+    }
+
+    public AbstractCommand(P plugin, String commandName, String permission, Boolean onlyPlayer) {
+        this(plugin, commandName, null, permission, onlyPlayer);
+    }
+
+    public AbstractCommand(P plugin, String commandName, Integer minArgsLength, String permission, Boolean onlyPlayer) {
         this.plugin = plugin;
         this.commandName = commandName;
         this.minArgsLength = minArgsLength;
+        this.permission = permission;
+        this.onlyPlayer = onlyPlayer;
     }
 
     public abstract boolean onExecute(CommandSender sender, Command command, String label, String[] args);
@@ -41,13 +65,13 @@ public abstract class AbstractCommand<P extends JavaPlugin> implements TabExecut
         if (!command.getName().equalsIgnoreCase(this.commandName))
             return false;
 
-        if (this.onlyPlayer && !(sender instanceof Player)) {
-            sender.sendMessage(Plugin.plugin.cm.messages().onlyPlayer);
+        if (onlyPlayer && !(sender instanceof Player)) {
+            sender.sendMessage(Plugin.plugin.configs.getConfigMsg().onlyPlayer);
             return true;
         }
 
         if (this.permission != null && !sender.hasPermission(this.permission)) {
-            sender.sendMessage(Plugin.plugin.cm.messages().noPermission);
+            sender.sendMessage(Plugin.plugin.configs.getConfigMsg().noPermission);
             return true;
         }
 
